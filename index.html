@@ -1,527 +1,511 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0-18 歲國家養｜我家可以領多少？</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --bg: #FAFAF7;
+    --card: #FFFFFF;
+    --ink: #2E3A47;
+    --ink-soft: #6B7785;
+    --ink-light: #A0AAB5;
+    --primary: #6B95B8;
+    --primary-soft: #E8EFF5;
+    --accent: #C8B89E;
+    --accent-soft: #F5F0E8;
+    --line: #E8EBEE;
+    --warn-bg: #FBF5EC;
+    --warn-border: #D4B896;
+    --warn-text: #8B6F3F;
+  }
+  
+  body {
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 20px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 8px 0 28px;
+  }
+  
+  .badge {
+    display: inline-block;
+    color: var(--primary);
+    background: var(--primary-soft);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+  }
+  
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  
+  .section-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  
+  .child-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .child-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+    min-width: 50px;
+  }
+  
+  .age-input-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+  
+  .age-input {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    background: white;
+    text-align: center;
+    width: 64px;
+    color: var(--ink);
+    transition: border-color 0.15s;
+  }
+  
+  .age-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--primary-soft);
+  }
+  
+  .age-unit {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  
+  .remove-btn {
+    background: transparent;
+    border: none;
+    color: var(--ink-light);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 2px 6px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  
+  .remove-btn:hover {
+    color: var(--primary);
+  }
+  
+  .add-btn {
+    width: 100%;
+    border: 1px dashed var(--ink-light);
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 4px;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  
+  .add-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-soft);
+  }
+  
+  .add-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .result-box {
+    margin-top: 22px;
+    background: linear-gradient(180deg, var(--primary-soft) 0%, white 100%);
+    border: 1px solid var(--primary);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  
+  .result-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+  
+  .result-main {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+  }
+  
+  .result-main .unit {
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 4px;
+    color: var(--ink-soft);
+  }
+  
+  .result-detail {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  
+  .result-extra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .result-extra-item .ex-label {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 3px;
+  }
+  
+  .result-extra-item .ex-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  
+  .result-extra-item .ex-value .small {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-left: 2px;
+  }
+  
+  .total-banner {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .total-banner .tb-label {
+    font-size: 11px;
+    color: var(--warn-text);
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+  }
+  
+  .total-banner .tb-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+  
+  .total-banner .tb-value .small {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-left: 2px;
+  }
+  
+  .warn-box {
+    margin-top: 16px;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  
+  .warn-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--warn-text);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .warn-body {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  
+  .warn-body strong {
+    color: var(--warn-text);
+  }
+  
+  .note {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border-radius: 10px;
+    line-height: 1.7;
+  }
+  
+  .note strong {
+    color: var(--ink);
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 16px 16px 4px;
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+  
+  .footer strong {
+    color: var(--ink-soft);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @media (max-width: 420px) {
+    .title { font-size: 24px; }
+    .result-main { font-size: 32px; }
+    .card { padding: 24px 20px; }
+  }
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="zh-Hant"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;0-18 歲國家養｜我家可以領多少？&lt;/title&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>* { box-sizing: border-box; margin: 0; padding: 0; }</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--bg: #FAFAF7;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--card: #FFFFFF;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--ink: #2E3A47;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--ink-soft: #6B7785;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--ink-light: #A0AAB5;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--primary: #6B95B8;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--primary-soft: #E8EFF5;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--accent: #C8B89E;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--accent-soft: #F5F0E8;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--line: #E8EBEE;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--warn-bg: #FBF5EC;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--warn-border: #D4B896;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>--warn-text: #8B6F3F;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--bg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1.7;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 20px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>-webkit-font-smoothing: antialiased;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.wrapper {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>max-width: 520px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.header {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 8px 0 28px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.badge {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--primary-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 4px 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: 1.5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.title {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1.35;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: -0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 400;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--card);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px solid var(--line);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 28px 24px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.section-title {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 17px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.section-sub {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.child-row {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 12px 14px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--bg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px solid var(--line);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.child-label {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex-shrink: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>min-width: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.age-input-wrap {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>justify-content: flex-end;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.age-input {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px solid var(--line);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 6px 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: inherit;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 64px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: border-color 0.15s;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.age-input:focus {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>outline: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--primary-soft);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.age-unit {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.remove-btn {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-light);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 2px 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: color 0.15s;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.remove-btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.add-btn {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px dashed var(--ink-light);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: inherit;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: all 0.15s;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.add-btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--primary-soft);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.add-btn:disabled {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0.4;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: not-allowed;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-box {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: linear-gradient(180deg, var(--primary-soft) 0%, white 100%);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px solid var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 22px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-label {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: 0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-main {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 38px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: -1.5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-main .unit {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-detail {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-extra {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>grid-template-columns: 1fr 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding-top: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-top: 1px solid var(--line);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-extra-item .ex-label {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 3px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-extra-item .ex-value {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: -0.3px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.result-extra-item .ex-value .small {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.total-banner {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 14px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px solid var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.total-banner .tb-label {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--warn-text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: 0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.total-banner .tb-value {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>letter-spacing: -0.5px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.total-banner .tb-value .small {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-left: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.warn-box {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--warn-bg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 1px solid var(--warn-border);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 14px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.warn-title {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--warn-text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.warn-body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1.7;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.warn-body strong {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--warn-text);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.note {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 11.5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 12px 14px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: var(--bg);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1.7;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.note strong {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.footer {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 16px 16px 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-light);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height: 1.7;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.footer strong {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: var(--ink-soft);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>@keyframes fadeIn {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>from { opacity: 0; transform: translateY(-4px); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>to { opacity: 1; transform: translateY(0); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.fade-in {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>animation: fadeIn 0.2s ease-out;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>@media (max-width: 420px) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.title { font-size: 24px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.result-main { font-size: 32px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card { padding: 24px 20px; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="wrapper"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="badge"&gt;2027 上路&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1 class="title"&gt;0-18 歲國家養&lt;br&gt;我家可以領多少？&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="subtitle"&gt;輸入孩子年齡，30 秒看懂&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2 class="section-title"&gt;家裡有幾位寶貝？&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="section-sub"&gt;最多 3 位 ‧ 年齡 0-17 歲（滿 18 即不再發放）&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="children-list"&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="add-btn" id="add-child-btn"&gt;＋ 再加一位孩子&lt;/button&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="result-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="result-label"&gt;每月可領現金&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="result-main"&gt;&lt;span id="monthly-cash"&gt;0&lt;/span&gt;&lt;span class="unit"&gt;元&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="result-detail" id="cash-breakdown"&gt;請輸入孩子年齡開始試算&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="result-extra"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="result-extra-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="ex-label"&gt;每月存入 TISA&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="ex-value"&gt;&lt;span id="monthly-tisa"&gt;0&lt;/span&gt;&lt;span class="small"&gt;元&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="result-extra-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="ex-label"&gt;18 歲帳戶累積（估）&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="ex-value"&gt;&lt;span id="total-tisa"&gt;0&lt;/span&gt;&lt;span class="small"&gt;元&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="total-banner"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tb-label"&gt;到 18 歲為止全家累積總額&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tb-value"&gt;&lt;span id="grand-total"&gt;0&lt;/span&gt;&lt;span class="small"&gt;元&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="warn-box"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="warn-title"&gt;⚠️ 上公幼／非營利／準公幼，育兒津貼會停發&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="warn-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>本試算&lt;strong&gt;預設可雙領&lt;/strong&gt;成長津貼與育兒津貼。但若孩子就讀公立幼兒園、非營利或準公共幼兒園，因已享有政府學費補助，&lt;strong&gt;不能領育兒津貼&lt;/strong&gt;，請從金額中扣除每月 5,000 元（在園期間，通常 2-6 歲）。&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>✅ &lt;strong&gt;仍可雙領&lt;/strong&gt;：在家自己帶、送私立幼兒園、2 歲以上送保母。</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="note"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>💡 &lt;strong&gt;試算依據&lt;/strong&gt;｜衛福部規劃：&lt;strong&gt;0-6 歲&lt;/strong&gt;每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；&lt;strong&gt;6-18 歲&lt;/strong&gt;每月 5,000 元中，2,500 元現金、2,500 元存入 TISA 兒少帳戶。&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>📌 從出生領到滿 18 歲生日前夕，共 18 年。單一孩童「成長津貼」累計最高 108 萬元，本工具總額已合併育兒津貼疊加。實際金額以行政院公告為準。</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>資料來源：&lt;strong&gt;行政院、衛福部&lt;/strong&gt;｜&lt;strong&gt;親子天下&lt;/strong&gt;整理&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>本工具僅供概念試算，實際請以官方公告為準</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let children = [{ age: 3 }];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const MAX_CHILDREN = 3;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const MAX_AGE = 17;</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function renderChildren() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const list = document.getElementById('children-list');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>list.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>children.forEach((child, i) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const row = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>row.className = 'child-row fade-in';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>row.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="child-label"&gt;第 ${i + 1} 位&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="age-input-wrap"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="number" class="age-input" min="0" max="${MAX_AGE}" value="${child.age}" data-idx="${i}"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="age-unit"&gt;歲&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>${children.length &gt; 1 ? `&lt;button class="remove-btn" data-idx="${i}" title="移除"&gt;✕&lt;/button&gt;` : ''}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>list.appendChild(row);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.age-input').forEach(input =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>input.addEventListener('input', e =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let v = parseInt(e.target.value);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (isNaN(v)) v = 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (v &lt; 0) v = 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (v &gt; MAX_AGE) v = MAX_AGE;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>children[parseInt(e.target.dataset.idx)].age = v;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>calculate();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.remove-btn').forEach(btn =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>btn.addEventListener('click', e =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>children.splice(parseInt(e.target.dataset.idx), 1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>renderChildren();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>calculate();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('add-child-btn').disabled = children.length &gt;= MAX_CHILDREN;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function calculate() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let monthlyCash = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let monthlyTisa = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let totalTisa = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let grandTotal = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const breakdown = [];</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>children.forEach((child, i) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const age = child.age;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (age &lt; 0 || age &gt; MAX_AGE) return;</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (age &lt; 6) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>monthlyCash += 10000;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 10,000`);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>monthlyCash += 2500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>monthlyTisa += 2500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 2,500 + TISA 2,500`);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const yearsUnder6 = Math.max(0, 6 - age);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const yearsOver6 = Math.max(0, 18 - Math.max(age, 6));</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const cashUnder6 = yearsUnder6 * 12 * 10000;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const cashOver6 = yearsOver6 * 12 * 2500;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const tisaOver6 = yearsOver6 * 12 * 2500;</p>
-<p class="p2"><span class="Apple-converted-space">      </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>totalTisa += tisaOver6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grandTotal += cashUnder6 + cashOver6 + tisaOver6;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('monthly-cash').textContent = monthlyCash.toLocaleString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('monthly-tisa').textContent = monthlyTisa.toLocaleString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('total-tisa').textContent = totalTisa.toLocaleString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('grand-total').textContent = grandTotal.toLocaleString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('cash-breakdown').textContent =<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">      </span>breakdown.length ? breakdown.join('　｜　') : '請輸入孩子年齡開始試算';</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('add-child-btn').addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (children.length &lt; MAX_CHILDREN) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>children.push({ age: 8 });</p>
-<p class="p1"><span class="Apple-converted-space">      </span>renderChildren();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>calculate();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><span class="Apple-converted-space">  </span></p>
-<p class="p1"><span class="Apple-converted-space">  </span>renderChildren();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>calculate();</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="badge">2027 上路</div>
+    <h1 class="title">0-18 歲國家養<br>我家可以領多少？</h1>
+    <p class="subtitle">輸入孩子年齡，30 秒看懂</p>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">家裡有幾位寶貝？</h2>
+    <p class="section-sub">最多 3 位 ‧ 年齡 0-17 歲（滿 18 即不再發放）</p>
+    
+    <div id="children-list"></div>
+    
+    <button class="add-btn" id="add-child-btn">＋ 再加一位孩子</button>
+    
+    <div class="result-box">
+      <div class="result-label">每月可領現金</div>
+      <div class="result-main"><span id="monthly-cash">0</span><span class="unit">元</span></div>
+      <div class="result-detail" id="cash-breakdown">請輸入孩子年齡開始試算</div>
+      
+      <div class="result-extra">
+        <div class="result-extra-item">
+          <div class="ex-label">每月存入 TISA</div>
+          <div class="ex-value"><span id="monthly-tisa">0</span><span class="small">元</span></div>
+        </div>
+        <div class="result-extra-item">
+          <div class="ex-label">18 歲帳戶累積（估）</div>
+          <div class="ex-value"><span id="total-tisa">0</span><span class="small">元</span></div>
+        </div>
+      </div>
+      
+      <div class="total-banner">
+        <div class="tb-label">到 18 歲為止全家累積總額</div>
+        <div class="tb-value"><span id="grand-total">0</span><span class="small">元</span></div>
+      </div>
+    </div>
+    
+    <div class="warn-box">
+      <div class="warn-title">⚠️ 上公幼／非營利／準公幼，育兒津貼會停發</div>
+      <div class="warn-body">
+        本試算<strong>預設可雙領</strong>成長津貼與育兒津貼。但若孩子就讀公立幼兒園、非營利或準公共幼兒園，因已享有政府學費補助，<strong>不能領育兒津貼</strong>，請從金額中扣除每月 5,000 元（在園期間，通常 2-6 歲）。<br>
+        ✅ <strong>仍可雙領</strong>：在家自己帶、送私立幼兒園、2 歲以上送保母。
+      </div>
+    </div>
+    
+    <div class="note">
+      💡 <strong>試算依據</strong>｜衛福部規劃：<strong>0-6 歲</strong>每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；<strong>6-18 歲</strong>每月 5,000 元中，2,500 元現金、2,500 元存入 TISA 兒少帳戶。<br>
+      📌 從出生領到滿 18 歲生日前夕，共 18 年。單一孩童「成長津貼」累計最高 108 萬元，本工具總額已合併育兒津貼疊加。實際金額以行政院公告為準。
+    </div>
+  </div>
+
+  <div class="footer">
+    資料來源：<strong>行政院、衛福部</strong>｜<strong>親子天下</strong>整理<br>
+    本工具僅供概念試算，實際請以官方公告為準
+  </div>
+
+</div>
+
+<script>
+  let children = [{ age: 3 }];
+  const MAX_CHILDREN = 3;
+  const MAX_AGE = 17;
+  
+  function renderChildren() {
+    const list = document.getElementById('children-list');
+    list.innerHTML = '';
+    children.forEach((child, i) => {
+      const row = document.createElement('div');
+      row.className = 'child-row fade-in';
+      row.innerHTML = `
+        <span class="child-label">第 ${i + 1} 位</span>
+        <div class="age-input-wrap">
+          <input type="number" class="age-input" min="0" max="${MAX_AGE}" value="${child.age}" data-idx="${i}">
+          <span class="age-unit">歲</span>
+          ${children.length > 1 ? `<button class="remove-btn" data-idx="${i}" title="移除">✕</button>` : ''}
+        </div>
+      `;
+      list.appendChild(row);
+    });
+    
+    document.querySelectorAll('.age-input').forEach(input => {
+      input.addEventListener('input', e => {
+        let v = parseInt(e.target.value);
+        if (isNaN(v)) v = 0;
+        if (v < 0) v = 0;
+        if (v > MAX_AGE) v = MAX_AGE;
+        children[parseInt(e.target.dataset.idx)].age = v;
+        calculate();
+      });
+    });
+    
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        children.splice(parseInt(e.target.dataset.idx), 1);
+        renderChildren();
+        calculate();
+      });
+    });
+    
+    document.getElementById('add-child-btn').disabled = children.length >= MAX_CHILDREN;
+  }
+  
+  function calculate() {
+    let monthlyCash = 0;
+    let monthlyTisa = 0;
+    let totalTisa = 0;
+    let grandTotal = 0;
+    const breakdown = [];
+    
+    children.forEach((child, i) => {
+      const age = child.age;
+      if (age < 0 || age > MAX_AGE) return;
+      
+      if (age < 6) {
+        monthlyCash += 10000;
+        breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 10,000`);
+      } else {
+        monthlyCash += 2500;
+        monthlyTisa += 2500;
+        breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 2,500 + TISA 2,500`);
+      }
+      
+      const yearsUnder6 = Math.max(0, 6 - age);
+      const yearsOver6 = Math.max(0, 18 - Math.max(age, 6));
+      
+      const cashUnder6 = yearsUnder6 * 12 * 10000;
+      const cashOver6 = yearsOver6 * 12 * 2500;
+      const tisaOver6 = yearsOver6 * 12 * 2500;
+      
+      totalTisa += tisaOver6;
+      grandTotal += cashUnder6 + cashOver6 + tisaOver6;
+    });
+    
+    document.getElementById('monthly-cash').textContent = monthlyCash.toLocaleString();
+    document.getElementById('monthly-tisa').textContent = monthlyTisa.toLocaleString();
+    document.getElementById('total-tisa').textContent = totalTisa.toLocaleString();
+    document.getElementById('grand-total').textContent = grandTotal.toLocaleString();
+    document.getElementById('cash-breakdown').textContent = 
+      breakdown.length ? breakdown.join('　｜　') : '請輸入孩子年齡開始試算';
+  }
+  
+  document.getElementById('add-child-btn').addEventListener('click', () => {
+    if (children.length < MAX_CHILDREN) {
+      children.push({ age: 8 });
+      renderChildren();
+      calculate();
+    }
+  });
+  
+  renderChildren();
+  calculate();
+</script>
+
 </body>
 </html>
