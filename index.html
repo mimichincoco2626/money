@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
@@ -18,9 +18,6 @@
     --accent: #C8B89E;
     --accent-soft: #F5F0E8;
     --line: #E8EBEE;
-    --warn-bg: #FBF5EC;
-    --warn-border: #D4B896;
-    --warn-text: #8B6F3F;
   }
   
   body {
@@ -262,7 +259,7 @@
   
   .total-banner .tb-label {
     font-size: 11px;
-    color: var(--warn-text);
+    color: var(--ink-soft);
     margin-bottom: 2px;
     letter-spacing: 0.5px;
   }
@@ -281,38 +278,10 @@
     margin-left: 2px;
   }
   
-  .warn-box {
-    margin-top: 16px;
-    background: var(--warn-bg);
-    border: 1px solid var(--warn-border);
-    border-radius: 12px;
-    padding: 14px 16px;
-  }
-  
-  .warn-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--warn-text);
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .warn-body {
-    font-size: 12px;
-    color: var(--ink);
-    line-height: 1.7;
-  }
-  
-  .warn-body strong {
-    color: var(--warn-text);
-  }
-  
   .note {
     font-size: 11.5px;
     color: var(--ink-soft);
-    margin-top: 12px;
+    margin-top: 16px;
     padding: 12px 14px;
     background: var(--bg);
     border-radius: 10px;
@@ -321,6 +290,19 @@
   
   .note strong {
     color: var(--ink);
+  }
+  
+  .footnote {
+    margin-top: 12px;
+    padding: 0 4px;
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+  
+  .footnote strong {
+    color: var(--ink-soft);
+    font-weight: 600;
   }
   
   .footer {
@@ -375,137 +357,4 @@
       <div class="result-detail" id="cash-breakdown">請輸入孩子年齡開始試算</div>
       
       <div class="result-extra">
-        <div class="result-extra-item">
-          <div class="ex-label">每月存入 TISA</div>
-          <div class="ex-value"><span id="monthly-tisa">0</span><span class="small">元</span></div>
-        </div>
-        <div class="result-extra-item">
-          <div class="ex-label">18 歲帳戶累積（估）</div>
-          <div class="ex-value"><span id="total-tisa">0</span><span class="small">元</span></div>
-        </div>
-      </div>
-      
-      <div class="total-banner">
-        <div class="tb-label">到 18 歲為止全家累積總額</div>
-        <div class="tb-value"><span id="grand-total">0</span><span class="small">元</span></div>
-      </div>
-    </div>
-    
-    <div class="warn-box">
-      <div class="warn-title">⚠️ 上公幼／非營利／準公幼，育兒津貼會停發</div>
-      <div class="warn-body">
-        本試算<strong>預設可雙領</strong>成長津貼與育兒津貼。但若孩子就讀公立幼兒園、非營利或準公共幼兒園，因已享有政府學費補助，<strong>不能領育兒津貼</strong>，請從金額中扣除每月 5,000 元（在園期間，通常 2-6 歲）。<br>
-        ✅ <strong>仍可雙領</strong>：在家自己帶、送私立幼兒園、2 歲以上送保母。
-      </div>
-    </div>
-    
-    <div class="note">
-      💡 <strong>試算依據</strong>｜衛福部規劃：<strong>0-6 歲</strong>每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；<strong>6-18 歲</strong>每月 5,000 元中，2,500 元現金、2,500 元存入 TISA 兒少帳戶。<br>
-      📌 從出生領到滿 18 歲生日前夕，共 18 年。單一孩童「成長津貼」累計最高 108 萬元，本工具總額已合併育兒津貼疊加。實際金額以行政院公告為準。
-    </div>
-  </div>
-
-  <div class="footer">
-    資料來源：<strong>行政院、衛福部</strong>｜<strong>親子天下</strong>整理<br>
-    本工具僅供概念試算，實際請以官方公告為準
-  </div>
-
-</div>
-
-<script>
-  let children = [{ age: 3 }];
-  const MAX_CHILDREN = 3;
-  const MAX_AGE = 17;
-  
-  function renderChildren() {
-    const list = document.getElementById('children-list');
-    list.innerHTML = '';
-    children.forEach((child, i) => {
-      const row = document.createElement('div');
-      row.className = 'child-row fade-in';
-      row.innerHTML = `
-        <span class="child-label">第 ${i + 1} 位</span>
-        <div class="age-input-wrap">
-          <input type="number" class="age-input" min="0" max="${MAX_AGE}" value="${child.age}" data-idx="${i}">
-          <span class="age-unit">歲</span>
-          ${children.length > 1 ? `<button class="remove-btn" data-idx="${i}" title="移除">✕</button>` : ''}
-        </div>
-      `;
-      list.appendChild(row);
-    });
-    
-    document.querySelectorAll('.age-input').forEach(input => {
-      input.addEventListener('input', e => {
-        let v = parseInt(e.target.value);
-        if (isNaN(v)) v = 0;
-        if (v < 0) v = 0;
-        if (v > MAX_AGE) v = MAX_AGE;
-        children[parseInt(e.target.dataset.idx)].age = v;
-        calculate();
-      });
-    });
-    
-    document.querySelectorAll('.remove-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        children.splice(parseInt(e.target.dataset.idx), 1);
-        renderChildren();
-        calculate();
-      });
-    });
-    
-    document.getElementById('add-child-btn').disabled = children.length >= MAX_CHILDREN;
-  }
-  
-  function calculate() {
-    let monthlyCash = 0;
-    let monthlyTisa = 0;
-    let totalTisa = 0;
-    let grandTotal = 0;
-    const breakdown = [];
-    
-    children.forEach((child, i) => {
-      const age = child.age;
-      if (age < 0 || age > MAX_AGE) return;
-      
-      if (age < 6) {
-        monthlyCash += 10000;
-        breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 10,000`);
-      } else {
-        monthlyCash += 2500;
-        monthlyTisa += 2500;
-        breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 2,500 + TISA 2,500`);
-      }
-      
-      const yearsUnder6 = Math.max(0, 6 - age);
-      const yearsOver6 = Math.max(0, 18 - Math.max(age, 6));
-      
-      const cashUnder6 = yearsUnder6 * 12 * 10000;
-      const cashOver6 = yearsOver6 * 12 * 2500;
-      const tisaOver6 = yearsOver6 * 12 * 2500;
-      
-      totalTisa += tisaOver6;
-      grandTotal += cashUnder6 + cashOver6 + tisaOver6;
-    });
-    
-    document.getElementById('monthly-cash').textContent = monthlyCash.toLocaleString();
-    document.getElementById('monthly-tisa').textContent = monthlyTisa.toLocaleString();
-    document.getElementById('total-tisa').textContent = totalTisa.toLocaleString();
-    document.getElementById('grand-total').textContent = grandTotal.toLocaleString();
-    document.getElementById('cash-breakdown').textContent = 
-      breakdown.length ? breakdown.join('　｜　') : '請輸入孩子年齡開始試算';
-  }
-  
-  document.getElementById('add-child-btn').addEventListener('click', () => {
-    if (children.length < MAX_CHILDREN) {
-      children.push({ age: 8 });
-      renderChildren();
-      calculate();
-    }
-  });
-  
-  renderChildren();
-  calculate();
-</script>
-
-</body>
-</html>
+        <d
