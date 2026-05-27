@@ -70,7 +70,6 @@
     font-weight: 400;
   }
   
-  /* 統計列 */
   .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -123,7 +122,6 @@
     margin-bottom: 20px;
   }
   
-  /* 試算機 */
   .child-row {
     display: flex;
     align-items: center;
@@ -332,7 +330,6 @@
   
   .footnote strong { color: var(--ink-soft); font-weight: 600; }
   
-  /* 18 項網格圖卡 */
   .grid-card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -445,7 +442,6 @@
     color: var(--new);
   }
   
-  /* 類別分隔 */
   .category-label {
     grid-column: 1 / -1;
     display: flex;
@@ -471,7 +467,6 @@
     background: var(--line);
   }
   
-  /* 延伸閱讀 */
   .related {
     background: var(--card);
     border: 1px solid var(--line);
@@ -599,7 +594,6 @@
 
 <div class="wrapper">
 
-  <!-- Header -->
   <div class="header">
     <div class="badge">2027/1/1 正式上路</div>
     <h1 class="title">0-18 歲國家養<br>我家可以領多少？</h1>
@@ -621,7 +615,6 @@
     </div>
   </div>
 
-  <!-- 試算機 -->
   <div class="card">
     <h2 class="section-title">家裡有幾位寶貝？</h2>
     <p class="section-sub">最多 3 位 ‧ 年齡 0-17 歲（滿 18 即不再發放）</p>
@@ -663,16 +656,14 @@
     </div>
   </div>
 
-  <!-- 18 項政策網格 -->
   <div class="grid-card">
     <div class="grid-header">
-      <h2>18 項家庭支持方案 <span class="new-tag">8 項本次新增</span></h2>
+      <h2>18 項家庭支持方案 <span class="new-tag">10 項本次新增</span></h2>
       <p>分五大面向：安心生養、強化托育、教育加碼、友善職場、居住減壓</p>
     </div>
     
     <div class="policy-grid">
       
-      <!-- 安心生養 -->
       <div class="category-label">
         <span class="category-label-text">安心生養</span>
         <span class="category-label-line"></span>
@@ -710,7 +701,6 @@
         <div class="grid-item-value">5,000-15,000 元</div>
       </div>
       
-      <!-- 強化托育 -->
       <div class="category-label">
         <span class="category-label-text">強化托育</span>
         <span class="category-label-line"></span>
@@ -734,7 +724,6 @@
         <div class="grid-item-value">加倍減除 200%</div>
       </div>
       
-      <!-- 教育加碼 -->
       <div class="category-label">
         <span class="category-label-text">教育加碼</span>
         <span class="category-label-line"></span>
@@ -753,7 +742,6 @@
         <div class="grid-item-value">三項支持</div>
       </div>
       
-      <!-- 友善職場 -->
       <div class="category-label">
         <span class="category-label-text">友善職場</span>
         <span class="category-label-line"></span>
@@ -794,7 +782,6 @@
         <div class="grid-item-value">每日 800 元</div>
       </div>
       
-      <!-- 居住減壓 -->
       <div class="category-label">
         <span class="category-label-text">居住減壓</span>
         <span class="category-label-line"></span>
@@ -811,19 +798,12 @@
         <span class="grid-item-new-badge">NEW</span>
         <div class="grid-item-emoji">🏠</div>
         <div class="grid-item-title">婚育家庭居住減壓</div>
-        <div class="grid-item-value">擴大婚育宅</div>
-      </div>
-      
-      <div class="grid-item">
-        <div class="grid-item-emoji">🔑</div>
-        <div class="grid-item-title">租金補貼加碼</div>
-        <div class="grid-item-value">最多 2 倍</div>
+        <div class="grid-item-value">擴大婚育宅 + 租補</div>
       </div>
       
     </div>
   </div>
 
-  <!-- 延伸閱讀 -->
   <div class="related">
     <div class="related-header">
       <span class="related-label">延伸閱讀</span>
@@ -917,8 +897,6 @@
       const age = child.age;
       if (age < 0 || age > MAX_AGE) return;
       
-      // 0-5 歲：成長津貼 5,000 + 育兒津貼 5,000 = 每月 1 萬元現金
-      // 6-17 歲：2,500 現金 + 2,500 存入專戶
       if (age < 6) {
         monthlyCash += 10000;
         breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 10,000`);
