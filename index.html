@@ -17,6 +17,8 @@
     --primary-soft: #E8EFF5;
     --accent: #C8B89E;
     --accent-soft: #F5F0E8;
+    --new: #D4A24C;
+    --new-soft: #FBF3E0;
     --video: #B8826B;
     --video-soft: #F5EAE2;
     --line: #E8EBEE;
@@ -32,13 +34,13 @@
   }
   
   .wrapper {
-    max-width: 520px;
+    max-width: 580px;
     margin: 0 auto;
   }
   
   .header {
     text-align: center;
-    padding: 8px 0 28px;
+    padding: 8px 0 24px;
   }
   
   .badge {
@@ -68,6 +70,38 @@
     font-weight: 400;
   }
   
+  /* 統計列 */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 460px;
+    margin: 20px auto 0;
+  }
+  
+  .stat-item {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  
+  .stat-value {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+  
+  .stat-label {
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  
   .card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -89,6 +123,7 @@
     margin-bottom: 20px;
   }
   
+  /* 試算機 */
   .child-row {
     display: flex;
     align-items: center;
@@ -153,9 +188,7 @@
     transition: color 0.15s;
   }
   
-  .remove-btn:hover {
-    color: var(--primary);
-  }
+  .remove-btn:hover { color: var(--primary); }
   
   .add-btn {
     width: 100%;
@@ -178,10 +211,7 @@
     background: var(--primary-soft);
   }
   
-  .add-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  .add-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   
   .result-box {
     margin-top: 22px;
@@ -290,9 +320,7 @@
     line-height: 1.7;
   }
   
-  .note strong {
-    color: var(--ink);
-  }
+  .note strong { color: var(--ink); }
   
   .footnote {
     margin-top: 12px;
@@ -302,12 +330,10 @@
     line-height: 1.75;
   }
   
-  .footnote strong {
-    color: var(--ink-soft);
-    font-weight: 600;
-  }
+  .footnote strong { color: var(--ink-soft); font-weight: 600; }
   
-  .policy-card {
+  /* 18 項網格圖卡 */
+  .grid-card {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 16px;
@@ -315,169 +341,137 @@
     margin-bottom: 16px;
   }
   
-  .policy-header {
+  .grid-header {
     margin-bottom: 18px;
   }
   
-  .policy-header h2 {
+  .grid-header h2 {
     font-size: 17px;
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 4px;
-  }
-  
-  .policy-header p {
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-  
-  .policy-item {
-    display: flex;
-    gap: 14px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  
-  .policy-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-  
-  .policy-item:first-child {
-    padding-top: 0;
-  }
-  
-  .policy-num {
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
-    background: var(--primary-soft);
-    color: var(--primary);
-    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .grid-header h2 .new-tag {
+    display: inline-block;
+    background: var(--new);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+  
+  .grid-header p {
     font-size: 13px;
-    font-weight: 700;
-    margin-top: 1px;
-  }
-  
-  .policy-content {
-    flex: 1;
-  }
-  
-  .policy-name {
-    font-size: 14.5px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 4px;
-    line-height: 1.4;
-  }
-  
-  .policy-desc {
-    font-size: 12.5px;
     color: var(--ink-soft);
-    line-height: 1.65;
   }
   
-  .policy-desc strong {
-    color: var(--ink);
-    font-weight: 600;
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
   
-  .full-list-toggle {
-    margin-top: 18px;
+  .grid-item {
     background: var(--bg);
     border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 12px 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: inherit;
-    width: 100%;
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    position: relative;
     transition: all 0.15s;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
-  .full-list-toggle:hover {
+  .grid-item:hover {
+    transform: translateY(-2px);
     border-color: var(--primary);
     background: var(--primary-soft);
   }
   
-  .full-list-toggle-text {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
+  .grid-item.is-new {
+    border-color: var(--new-soft);
+    background: linear-gradient(180deg, var(--new-soft) 0%, var(--bg) 100%);
   }
   
-  .full-list-toggle-icon {
-    font-size: 12px;
-    color: var(--primary);
-    transition: transform 0.2s;
+  .grid-item.is-new:hover {
+    border-color: var(--new);
   }
   
-  .full-list-toggle.open .full-list-toggle-icon {
-    transform: rotate(180deg);
+  .grid-item-new-badge {
+    position: absolute;
+    top: -6px;
+    right: 8px;
+    background: var(--new);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
   }
   
-  .full-list {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+  .grid-item-emoji {
+    font-size: 26px;
+    margin-bottom: 6px;
+    line-height: 1;
   }
   
-  .full-list.open {
-    max-height: 1800px;
-  }
-  
-  .full-list-inner {
-    padding-top: 14px;
-  }
-  
-  .full-list-section {
-    margin-bottom: 16px;
-  }
-  
-  .full-list-section:last-child {
-    margin-bottom: 0;
-  }
-  
-  .full-list-section-title {
+  .grid-item-title {
     font-size: 12px;
     font-weight: 700;
-    color: var(--primary);
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--line);
-  }
-  
-  .full-list-items {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .full-list-item {
-    font-size: 12.5px;
     color: var(--ink);
-    line-height: 1.6;
-    padding-left: 18px;
-    position: relative;
+    line-height: 1.35;
+    margin-bottom: 4px;
   }
   
-  .full-list-item::before {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 9px;
-    width: 4px;
-    height: 4px;
-    background: var(--accent);
-    border-radius: 50%;
+  .grid-item-value {
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 600;
+    line-height: 1.4;
   }
   
+  .grid-item.is-new .grid-item-value {
+    color: var(--new);
+  }
+  
+  /* 類別分隔 */
+  .category-label {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+  }
+  
+  .category-label:first-child { margin-top: 0; }
+  
+  .category-label-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  
+  .category-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  
+  /* 延伸閱讀 */
   .related {
     background: var(--card);
     border: 1px solid var(--line);
@@ -519,9 +513,7 @@
     transition: all 0.2s ease;
   }
   
-  .related-link:last-child {
-    margin-bottom: 0;
-  }
+  .related-link:last-child { margin-bottom: 0; }
   
   .related-link:hover {
     border-color: var(--primary);
@@ -568,13 +560,8 @@
     transition: transform 0.2s ease;
   }
   
-  .related-link.video .related-link-title .arrow {
-    color: var(--video);
-  }
-  
-  .related-link:hover .arrow {
-    transform: translateX(3px);
-  }
+  .related-link.video .related-link-title .arrow { color: var(--video); }
+  .related-link:hover .arrow { transform: translateX(3px); }
   
   .footer {
     text-align: center;
@@ -584,24 +571,27 @@
     line-height: 1.7;
   }
   
-  .footer strong {
-    color: var(--ink-soft);
-  }
+  .footer strong { color: var(--ink-soft); }
   
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
   }
   
-  .fade-in {
-    animation: fadeIn 0.2s ease-out;
-  }
+  .fade-in { animation: fadeIn 0.2s ease-out; }
   
-  @media (max-width: 420px) {
+  @media (max-width: 480px) {
     .title { font-size: 24px; }
     .result-main { font-size: 32px; }
-    .card, .policy-card { padding: 24px 20px; }
+    .card, .grid-card { padding: 24px 18px; }
     .related { padding: 20px; }
+    .policy-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats { gap: 6px; }
+    .stat-value { font-size: 14px; }
+  }
+  
+  @media (max-width: 360px) {
+    .policy-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -609,12 +599,29 @@
 
 <div class="wrapper">
 
+  <!-- Header -->
   <div class="header">
-    <div class="badge">2027 上路</div>
+    <div class="badge">2027/1/1 正式上路</div>
     <h1 class="title">0-18 歲國家養<br>我家可以領多少？</h1>
     <p class="subtitle">輸入孩子年齡，30 秒看懂</p>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value">3,800 億</div>
+        <div class="stat-label">總計投注</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">277 萬</div>
+        <div class="stat-label">人次受惠</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">108 萬</div>
+        <div class="stat-label">單一孩童累計</div>
+      </div>
+    </div>
   </div>
 
+  <!-- 試算機 -->
   <div class="card">
     <h2 class="section-title">家裡有幾位寶貝？</h2>
     <p class="section-sub">最多 3 位 ‧ 年齡 0-17 歲（滿 18 即不再發放）</p>
@@ -630,11 +637,11 @@
       
       <div class="result-extra">
         <div class="result-extra-item">
-          <div class="ex-label">每月存入 TISA</div>
+          <div class="ex-label">每月存入專戶</div>
           <div class="ex-value"><span id="monthly-tisa">0</span><span class="small">元</span></div>
         </div>
         <div class="result-extra-item">
-          <div class="ex-label">18 歲帳戶累積（估）</div>
+          <div class="ex-label">18 歲專戶累積（估）</div>
           <div class="ex-value"><span id="total-tisa">0</span><span class="small">元</span></div>
         </div>
       </div>
@@ -646,122 +653,177 @@
     </div>
     
     <div class="note">
-      💡 <strong>試算依據</strong>｜<strong>0-5 歲（學齡前）</strong>每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；<strong>6-17 歲（學齡階段）</strong>每月 5,000 元中，2,500 元現金、2,500 元存入 TISA 兒少帳戶（保底 2%）。<br>
-      📌 從出生領到滿 18 歲生日前夕，共 18 年。單一孩童「成長津貼」累計最高 108 萬元，本工具總額已合併育兒津貼疊加。
+      💡 <strong>試算依據</strong>｜<strong>0-5 歲（學齡前）</strong>每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；<strong>6-17 歲</strong>每月 5,000 元中，2,500 元現金、2,500 元存入「<strong>兒少成長津貼專案</strong>」國家專戶（保底 2 年期定存利率）。<br>
+      📌 從出生領到滿 18 歲生日前夕，共 18 年，<strong>單一孩童累計至少 108 萬元</strong>。本工具總額已合併育兒津貼疊加。
     </div>
     
     <div class="footnote">
       <strong>※ 註一｜</strong>若孩子就讀公立、非營利或準公共幼兒園，因已享有政府學費補助，不能領育兒津貼，請從試算金額扣除每月 5,000 元（在園期間）。在家自己帶、送私立幼兒園或 2 歲以上送保母則可雙領。<br>
-      <strong>※ 註二｜</strong>本試算依親子天下 2026/5/27 整理之衛福部規劃，正式版本以行政院公告為準。
+      <strong>※ 註二｜</strong>本試算依 2026/5/27 行政院正式公布之「台灣人口對策新戰略—家庭支持篇」18 項方案整理。
     </div>
   </div>
 
-  <div class="policy-card">
-    <div class="policy-header">
-      <h2>4 大政策亮點</h2>
-      <p>除了成長津貼，新政策還包含這些</p>
+  <!-- 18 項政策網格 -->
+  <div class="grid-card">
+    <div class="grid-header">
+      <h2>18 項家庭支持方案 <span class="new-tag">8 項本次新增</span></h2>
+      <p>分五大面向：安心生養、強化托育、教育加碼、友善職場、居住減壓</p>
     </div>
     
-    <div class="policy-item">
-      <div class="policy-num">1</div>
-      <div class="policy-content">
-        <div class="policy-name">每月 5,000 元成長津貼</div>
-        <div class="policy-desc">
-          <strong>0-18 歲普發、不排富</strong>。0-5 歲全額現金，可與育兒津貼疊加每月領 1 萬；6-17 歲一半現金、一半存 TISA 帳戶。預計 308 萬人受惠，每年挹注 2,000 億元。
-        </div>
+    <div class="policy-grid">
+      
+      <!-- 安心生養 -->
+      <div class="category-label">
+        <span class="category-label-text">安心生養</span>
+        <span class="category-label-line"></span>
       </div>
-    </div>
-    
-    <div class="policy-item">
-      <div class="policy-num">2</div>
-      <div class="policy-content">
-        <div class="policy-name">首創 TISA 兒少帳戶</div>
-        <div class="policy-desc">
-          6-17 歲每月存 2,500 元，<strong>12 年累積至少 36 萬</strong>。比照國保模式委外代操、<strong>保底 2%</strong>不會虧損。孩子 18 歲可全數解凍，作為就學、創業基金。
-        </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">💰</div>
+        <div class="grid-item-title">0-18 歲成長津貼</div>
+        <div class="grid-item-value">每月 5,000 元</div>
       </div>
-    </div>
-    
-    <div class="policy-item">
-      <div class="policy-num">3</div>
-      <div class="policy-content">
-        <div class="policy-name">育嬰假升級「育兒假」</div>
-        <div class="policy-desc">
-          適用年齡<strong>從 3 歲延伸至 6 歲</strong>，以「日」為單位彈性請假。父母最高合計可領 18 個月有薪育兒留停。
-        </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">🤝</div>
+        <div class="grid-item-title">弱勢兒少發展帳戶</div>
+        <div class="grid-item-value">1:1 政府提撥</div>
       </div>
-    </div>
-    
-    <div class="policy-item">
-      <div class="policy-num">4</div>
-      <div class="policy-content">
-        <div class="policy-name">產假、陪產假加碼</div>
-        <div class="policy-desc">
-          婚假、產假、陪產檢假、陪產假天數延長，<strong>由政府補貼工資</strong>。中小企業另獲職代津貼與新聘人力獎勵，打造友善職場。
-        </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">🌱</div>
+        <div class="grid-item-title">擴大人工生殖補助</div>
+        <div class="grid-item-value">最高 15 萬 / 次</div>
       </div>
-    </div>
-    
-    <button class="full-list-toggle" id="full-list-toggle">
-      <span class="full-list-toggle-text">📋 展開完整 18 項政策清單</span>
-      <span class="full-list-toggle-icon">▼</span>
-    </button>
-    
-    <div class="full-list" id="full-list">
-      <div class="full-list-inner">
-        
-        <div class="full-list-section">
-          <div class="full-list-section-title">💰 經濟支持</div>
-          <div class="full-list-items">
-            <div class="full-list-item">0-18 歲成長津貼每月 5,000 元</div>
-            <div class="full-list-item">鼓勵弱勢兒少存款，一比一提撥</div>
-            <div class="full-list-item">生育給付 10 萬元</div>
-            <div class="full-list-item">持續 0-2 歲托育補助</div>
-            <div class="full-list-item">持續 2-6 歲平價教保、育兒津貼</div>
-          </div>
-        </div>
-        
-        <div class="full-list-section">
-          <div class="full-list-section-title">🤰 生育養育</div>
-          <div class="full-list-items">
-            <div class="full-list-item">擴大人工生殖補助，愈早使用加碼愈多</div>
-            <div class="full-list-item">兒童醫療保健升級，預防保健補助增加</div>
-            <div class="full-list-item">公托公幼持續布建，擴大平價幼保量能</div>
-            <div class="full-list-item">企業托育支出減稅</div>
-          </div>
-        </div>
-        
-        <div class="full-list-section">
-          <div class="full-list-section-title">🎓 教育學貸</div>
-          <div class="full-list-items">
-            <div class="full-list-item">學貸利息再降 1%、還款期展延</div>
-            <div class="full-list-item">青年安心就學 3 項支持</div>
-          </div>
-        </div>
-        
-        <div class="full-list-section">
-          <div class="full-list-section-title">💼 友善職場</div>
-          <div class="full-list-items">
-            <div class="full-list-item">婚假、產假、陪產假延長，政府補貼工資</div>
-            <div class="full-list-item">育兒留停加碼！雙親最高 18 個月</div>
-            <div class="full-list-item">育嬰假升級育兒假，照顧年齡延至 6 歲</div>
-            <div class="full-list-item">推育兒彈性上下班、「減工時不減薪」</div>
-            <div class="full-list-item">提供「企業職代補助」、替代人力補助</div>
-          </div>
-        </div>
-        
-        <div class="full-list-section">
-          <div class="full-list-section-title">🏡 家庭支持</div>
-          <div class="full-list-items">
-            <div class="full-list-item">未成年子女免稅額加碼</div>
-            <div class="full-list-item">婚育家庭租補加碼、擴大婚育宅</div>
-          </div>
-        </div>
-        
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">👶</div>
+        <div class="grid-item-title">生育給付</div>
+        <div class="grid-item-value">補足至 10 萬元</div>
       </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">🍼</div>
+        <div class="grid-item-title">0-2 歲托育補助</div>
+        <div class="grid-item-value">5,000-15,000 元</div>
+      </div>
+      
+      <!-- 強化托育 -->
+      <div class="category-label">
+        <span class="category-label-text">強化托育</span>
+        <span class="category-label-line"></span>
+      </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">🏥</div>
+        <div class="grid-item-title">兒童醫療保健升級</div>
+        <div class="grid-item-value">預防保健 9 次</div>
+      </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">🏫</div>
+        <div class="grid-item-title">擴大平價幼保量能</div>
+        <div class="grid-item-value">公托公幼布建</div>
+      </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">🏢</div>
+        <div class="grid-item-title">企業托育租稅優惠</div>
+        <div class="grid-item-value">加倍減除 200%</div>
+      </div>
+      
+      <!-- 教育加碼 -->
+      <div class="category-label">
+        <span class="category-label-text">教育加碼</span>
+        <span class="category-label-line"></span>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">🎓</div>
+        <div class="grid-item-title">學貸利息再降</div>
+        <div class="grid-item-value">1.775% → 0.775%</div>
+      </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">📚</div>
+        <div class="grid-item-title">青年安心就學</div>
+        <div class="grid-item-value">三項支持</div>
+      </div>
+      
+      <!-- 友善職場 -->
+      <div class="category-label">
+        <span class="category-label-text">友善職場</span>
+        <span class="category-label-line"></span>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">💍</div>
+        <div class="grid-item-title">婚假產假陪產假</div>
+        <div class="grid-item-value">延長 + 補貼工資</div>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">🤱</div>
+        <div class="grid-item-title">育兒留停 6+3</div>
+        <div class="grid-item-value">雙親最高 18 個月</div>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">📅</div>
+        <div class="grid-item-title">育嬰假升育兒假</div>
+        <div class="grid-item-value">至 6 歲 / 共 120 日</div>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">⏰</div>
+        <div class="grid-item-title">彈性減工時不減薪</div>
+        <div class="grid-item-value">適用 0-12 歲</div>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">👥</div>
+        <div class="grid-item-title">企業職代補助</div>
+        <div class="grid-item-value">每日 800 元</div>
+      </div>
+      
+      <!-- 居住減壓 -->
+      <div class="category-label">
+        <span class="category-label-text">居住減壓</span>
+        <span class="category-label-line"></span>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">💵</div>
+        <div class="grid-item-title">育兒家庭減稅</div>
+        <div class="grid-item-value">免稅額 15.15 萬</div>
+      </div>
+      
+      <div class="grid-item is-new">
+        <span class="grid-item-new-badge">NEW</span>
+        <div class="grid-item-emoji">🏠</div>
+        <div class="grid-item-title">婚育家庭居住減壓</div>
+        <div class="grid-item-value">擴大婚育宅</div>
+      </div>
+      
+      <div class="grid-item">
+        <div class="grid-item-emoji">🔑</div>
+        <div class="grid-item-title">租金補貼加碼</div>
+        <div class="grid-item-value">最多 2 倍</div>
+      </div>
+      
     </div>
   </div>
 
+  <!-- 延伸閱讀 -->
   <div class="related">
     <div class="related-header">
       <span class="related-label">延伸閱讀</span>
@@ -855,14 +917,15 @@
       const age = child.age;
       if (age < 0 || age > MAX_AGE) return;
       
-      // 6 歲分界：0-5 歲全額現金 1 萬；6-17 歲半現金半 TISA
+      // 0-5 歲：成長津貼 5,000 + 育兒津貼 5,000 = 每月 1 萬元現金
+      // 6-17 歲：2,500 現金 + 2,500 存入專戶
       if (age < 6) {
         monthlyCash += 10000;
         breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 10,000`);
       } else {
         monthlyCash += 2500;
         monthlyTisa += 2500;
-        breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 2,500 + TISA 2,500`);
+        breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 2,500 + 專戶 2,500`);
       }
       
       const yearsUnder6 = Math.max(0, 6 - age);
@@ -890,16 +953,6 @@
       renderChildren();
       calculate();
     }
-  });
-  
-  const toggle = document.getElementById('full-list-toggle');
-  const fullList = document.getElementById('full-list');
-  const toggleText = toggle.querySelector('.full-list-toggle-text');
-  
-  toggle.addEventListener('click', () => {
-    const isOpen = fullList.classList.toggle('open');
-    toggle.classList.toggle('open');
-    toggleText.textContent = isOpen ? '📋 收合完整清單' : '📋 展開完整 18 項政策清單';
   });
   
   renderChildren();
