@@ -17,6 +17,8 @@
     --primary-soft: #E8EFF5;
     --accent: #C8B89E;
     --accent-soft: #F5F0E8;
+    --video: #B8826B;
+    --video-soft: #F5EAE2;
     --line: #E8EBEE;
   }
   
@@ -305,6 +307,278 @@
     font-weight: 600;
   }
   
+  /* ---------- Policy Highlights ---------- */
+  .policy-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+  }
+  
+  .policy-header {
+    margin-bottom: 18px;
+  }
+  
+  .policy-header h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  
+  .policy-header p {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  
+  .policy-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .policy-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .policy-item:first-child {
+    padding-top: 0;
+  }
+  
+  .policy-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  
+  .policy-content {
+    flex: 1;
+  }
+  
+  .policy-name {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  
+  .policy-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  
+  .policy-desc strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  
+  /* ---------- Collapsible Full List ---------- */
+  .full-list-toggle {
+    margin-top: 18px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: inherit;
+    width: 100%;
+    transition: all 0.15s;
+  }
+  
+  .full-list-toggle:hover {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+  }
+  
+  .full-list-toggle-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  
+  .full-list-toggle-icon {
+    font-size: 12px;
+    color: var(--primary);
+    transition: transform 0.2s;
+  }
+  
+  .full-list-toggle.open .full-list-toggle-icon {
+    transform: rotate(180deg);
+  }
+  
+  .full-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .full-list.open {
+    max-height: 1500px;
+  }
+  
+  .full-list-inner {
+    padding-top: 14px;
+  }
+  
+  .full-list-section {
+    margin-bottom: 16px;
+  }
+  
+  .full-list-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .full-list-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .full-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .full-list-item {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.6;
+    padding-left: 18px;
+    position: relative;
+  }
+  
+  .full-list-item::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  
+  /* ---------- Related Reading ---------- */
+  .related {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .related-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .related-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  
+  .related-line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  
+  .related-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+  }
+  
+  .related-link:last-child {
+    margin-bottom: 0;
+  }
+  
+  .related-link:hover {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    transform: translateY(-2px);
+  }
+  
+  .related-link.video:hover {
+    border-color: var(--video);
+    background: var(--video-soft);
+  }
+  
+  .related-link-tag {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--primary);
+    background: var(--primary-soft);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  
+  .related-link.video .related-link-tag {
+    color: var(--video);
+    background: var(--video-soft);
+  }
+  
+  .related-link-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.55;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .related-link-title .arrow {
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .related-link.video .related-link-title .arrow {
+    color: var(--video);
+  }
+  
+  .related-link:hover .arrow {
+    transform: translateX(3px);
+  }
+  
   .footer {
     text-align: center;
     padding: 16px 16px 4px;
@@ -329,7 +603,8 @@
   @media (max-width: 420px) {
     .title { font-size: 24px; }
     .result-main { font-size: 32px; }
-    .card { padding: 24px 20px; }
+    .card, .policy-card { padding: 24px 20px; }
+    .related { padding: 20px; }
   }
 </style>
 </head>
@@ -343,6 +618,7 @@
     <p class="subtitle">輸入孩子年齡，30 秒看懂</p>
   </div>
 
+  <!-- 試算工具 -->
   <div class="card">
     <h2 class="section-title">家裡有幾位寶貝？</h2>
     <p class="section-sub">最多 3 位 ‧ 年齡 0-17 歲（滿 18 即不再發放）</p>
@@ -374,13 +650,164 @@
     </div>
     
     <div class="note">
-      💡 <strong>試算依據</strong>｜衛福部規劃：<strong>0-6 歲</strong>每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；<strong>6-18 歲</strong>每月 5,000 元中，2,500 元現金、2,500 元存入 TISA 兒少帳戶。<br>
-      📌 從出生領到滿 18 歲生日前夕，共 18 年。單一孩童「成長津貼」累計最高 108 萬元，本工具總額已合併育兒津貼疊加。實際金額以行政院公告為準。
+      💡 <strong>試算依據</strong>｜<strong>0-6 歲（學齡前）</strong>每月領 5,000 元成長津貼 + 育兒津貼 5,000 元（共 1 萬元現金）；<strong>7-18 歲（就學階段）</strong>每月 5,000 元中，2,500 元現金、2,500 元存入 TISA 兒少帳戶。<br>
+      📌 從出生領到滿 18 歲生日前夕，共 18 年。單一孩童「成長津貼」累計最高 108 萬元，本工具總額已合併育兒津貼疊加。
     </div>
     
     <div class="footnote">
-      <strong>※ 註：</strong>若孩子就讀公立、非營利或準公共幼兒園，因已享有政府學費補助，不能領育兒津貼，請從試算金額扣除每月 5,000 元（在園期間）。在家自己帶、送私立幼兒園或 2 歲以上送保母則可雙領。
+      <strong>※ 註一｜</strong>若孩子就讀公立、非營利或準公共幼兒園，因已享有政府學費補助，不能領育兒津貼，請從試算金額扣除每月 5,000 元（在園期間）。在家自己帶、送私立幼兒園或 2 歲以上送保母則可雙領。<br>
+      <strong>※ 註二｜</strong>本試算依親子天下 2026/5/27 整理之衛福部規劃，正式版本以 5/28 行政院會公告為準。
     </div>
+  </div>
+
+  <!-- 政策重點 -->
+  <div class="policy-card">
+    <div class="policy-header">
+      <h2>5 大政策重點</h2>
+      <p>除了成長津貼，新政策還包含這些</p>
+    </div>
+    
+    <div class="policy-item">
+      <div class="policy-num">1</div>
+      <div class="policy-content">
+        <div class="policy-name">每月 5,000 元成長津貼</div>
+        <div class="policy-desc">
+          <strong>0-18 歲普發、不排富</strong>。0-6 歲全額現金，可與育兒津貼疊加每月領 1 萬；7-18 歲一半現金、一半存 TISA 帳戶。預計 308 萬人受惠，每年挹注 2,000 億元。
+        </div>
+      </div>
+    </div>
+    
+    <div class="policy-item">
+      <div class="policy-num">2</div>
+      <div class="policy-content">
+        <div class="policy-name">首創 TISA 兒少帳戶</div>
+        <div class="policy-desc">
+          7-18 歲每月存 2,500 元，<strong>12 年累積至少 36 萬</strong>。比照國保模式委外代操、設保底機制不虧損。孩子 18 歲可全數解凍，作為就學、創業基金。
+        </div>
+      </div>
+    </div>
+    
+    <div class="policy-item">
+      <div class="policy-num">3</div>
+      <div class="policy-content">
+        <div class="policy-name">育嬰假升級「育兒假」</div>
+        <div class="policy-desc">
+          適用年齡<strong>從 3 歲延伸至 6 歲</strong>，以「日」為單位彈性請假。父母最高合計可領 18 個月有薪育兒留停。
+        </div>
+      </div>
+    </div>
+    
+    <div class="policy-item">
+      <div class="policy-num">4</div>
+      <div class="policy-content">
+        <div class="policy-name">產假、陪產假加碼</div>
+        <div class="policy-desc">
+          婚假、產假、陪產假、陪產檢假天數延長，<strong>由政府補貼工資</strong>。中小企業另獲職代津貼與新聘人力獎勵。
+        </div>
+      </div>
+    </div>
+    
+    <div class="policy-item">
+      <div class="policy-num">5</div>
+      <div class="policy-content">
+        <div class="policy-name">全職爸媽 65 歲保底 5,000</div>
+        <div class="policy-desc">
+          無公／勞／農保的家庭主婦、主夫，國民年金給付<strong>調高 23.5%</strong>，65 歲後每月保底領 5,000 元老年年金。
+        </div>
+      </div>
+    </div>
+    
+    <!-- 摺疊式完整 18 項 -->
+    <button class="full-list-toggle" id="full-list-toggle">
+      <span class="full-list-toggle-text">📋 展開完整 18 項政策清單</span>
+      <span class="full-list-toggle-icon">▼</span>
+    </button>
+    
+    <div class="full-list" id="full-list">
+      <div class="full-list-inner">
+        
+        <div class="full-list-section">
+          <div class="full-list-section-title">💰 經濟支持</div>
+          <div class="full-list-items">
+            <div class="full-list-item">0-18 歲成長津貼每月 5,000 元</div>
+            <div class="full-list-item">一比一提撥弱勢兒少存款加倍</div>
+            <div class="full-list-item">生育給付補足 10 萬</div>
+            <div class="full-list-item">0-2 歲托育補助依胎次再提高</div>
+            <div class="full-list-item">2-6 歲平價教保、育兒津貼持續加碼</div>
+          </div>
+        </div>
+        
+        <div class="full-list-section">
+          <div class="full-list-section-title">🤰 生育養育</div>
+          <div class="full-list-items">
+            <div class="full-list-item">擴大人工生殖補助，愈早使用加碼愈多</div>
+            <div class="full-list-item">兒童醫療保健升級</div>
+            <div class="full-list-item">公托公幼持續布建，擴大平價幼保量能</div>
+            <div class="full-list-item">企業托育支出減稅</div>
+          </div>
+        </div>
+        
+        <div class="full-list-section">
+          <div class="full-list-section-title">🎓 教育學貸</div>
+          <div class="full-list-items">
+            <div class="full-list-item">學貸利息再降 1%、還款展延</div>
+            <div class="full-list-item">青年安心就學三項支持</div>
+          </div>
+        </div>
+        
+        <div class="full-list-section">
+          <div class="full-list-section-title">💼 友善職場</div>
+          <div class="full-list-items">
+            <div class="full-list-item">婚假、產假、陪產假延長，由政府補貼工資</div>
+            <div class="full-list-item">育兒留停加碼！雙親最高 18 個月</div>
+            <div class="full-list-item">育嬰假升級育兒假，照顧年齡延至 6 歲</div>
+            <div class="full-list-item">育兒彈性上下班，推「減工時不減薪」</div>
+            <div class="full-list-item">提供「企業職代補助」協助打造友善職場</div>
+          </div>
+        </div>
+        
+        <div class="full-list-section">
+          <div class="full-list-section-title">🏡 家庭支持</div>
+          <div class="full-list-items">
+            <div class="full-list-item">未成年子女免稅額加碼</div>
+            <div class="full-list-item">婚育家庭租補加碼</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 延伸閱讀 -->
+  <div class="related">
+    <div class="related-header">
+      <span class="related-label">延伸閱讀</span>
+      <span class="related-line"></span>
+    </div>
+    
+    <a href="https://cplink.co/RBRm0RXN" target="_blank" rel="noopener" class="related-link">
+      <span class="related-link-tag">政策整理包</span>
+      <div class="related-link-title">
+        <span>0-18 歲國家養整理包｜每月 5000 元成長津貼怎麼拿？「家庭支持篇」政策、TISA 兒少專戶、全職父母補貼重點總整理</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+    
+    <a href="https://cplink.co/oku2106Y" target="_blank" rel="noopener" class="related-link">
+      <span class="related-link-tag">TISA 深度解析</span>
+      <div class="related-link-title">
+        <span>TISA 兒少帳戶新制一次看懂！TISA 能減輕家長焦慮嗎？優缺點、FAQ、專家建議</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+    
+    <a href="https://cplink.co/UeMVqnV8" target="_blank" rel="noopener" class="related-link video">
+      <span class="related-link-tag">▶ 影音直播</span>
+      <div class="related-link-title">
+        <span>20260527「台灣人口對策新戰略—家庭支持篇」總統府直播</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
   </div>
 
   <div class="footer">
@@ -391,6 +818,7 @@
 </div>
 
 <script>
+  // ---------- 試算機 ----------
   let children = [{ age: 3 }];
   const MAX_CHILDREN = 3;
   const MAX_AGE = 17;
@@ -445,7 +873,7 @@
       const age = child.age;
       if (age < 0 || age > MAX_AGE) return;
       
-      if (age < 6) {
+      if (age < 7) {
         monthlyCash += 10000;
         breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 10,000`);
       } else {
@@ -454,15 +882,15 @@
         breakdown.push(`第 ${i + 1} 位（${age} 歲）每月 2,500 + TISA 2,500`);
       }
       
-      const yearsUnder6 = Math.max(0, 6 - age);
-      const yearsOver6 = Math.max(0, 18 - Math.max(age, 6));
+      const yearsUnder7 = Math.max(0, 7 - age);
+      const yearsOver7 = Math.max(0, 18 - Math.max(age, 7));
       
-      const cashUnder6 = yearsUnder6 * 12 * 10000;
-      const cashOver6 = yearsOver6 * 12 * 2500;
-      const tisaOver6 = yearsOver6 * 12 * 2500;
+      const cashUnder7 = yearsUnder7 * 12 * 10000;
+      const cashOver7 = yearsOver7 * 12 * 2500;
+      const tisaOver7 = yearsOver7 * 12 * 2500;
       
-      totalTisa += tisaOver6;
-      grandTotal += cashUnder6 + cashOver6 + tisaOver6;
+      totalTisa += tisaOver7;
+      grandTotal += cashUnder7 + cashOver7 + tisaOver7;
     });
     
     document.getElementById('monthly-cash').textContent = monthlyCash.toLocaleString();
@@ -479,6 +907,17 @@
       renderChildren();
       calculate();
     }
+  });
+  
+  // ---------- 摺疊式完整 18 項 ----------
+  const toggle = document.getElementById('full-list-toggle');
+  const fullList = document.getElementById('full-list');
+  const toggleText = toggle.querySelector('.full-list-toggle-text');
+  
+  toggle.addEventListener('click', () => {
+    const isOpen = fullList.classList.toggle('open');
+    toggle.classList.toggle('open');
+    toggleText.textContent = isOpen ? '📋 收合完整清單' : '📋 展開完整 18 項政策清單';
   });
   
   renderChildren();
