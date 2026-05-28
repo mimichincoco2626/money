@@ -21,6 +21,8 @@
     --new-soft: #FBF3E0;
     --video: #B8826B;
     --video-soft: #F5EAE2;
+    --feature: #4A6B85;
+    --feature-soft: #DDE6EE;
     --line: #E8EBEE;
   }
   
@@ -467,6 +469,112 @@
     background: var(--line);
   }
   
+  /* ---------- 專訪頭條卡片 ---------- */
+  .feature-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    transition: all 0.25s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--feature);
+    box-shadow: 0 8px 20px -8px rgba(74, 107, 133, 0.25);
+  }
+  
+  .feature-image-wrap {
+    position: relative;
+    width: 100%;
+    background: var(--feature-soft);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  
+  .feature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .feature-quote {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 18px 16px;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.8) 100%);
+    color: white;
+  }
+  
+  .feature-quote-mark {
+    font-size: 26px;
+    line-height: 0.6;
+    color: var(--accent);
+    font-family: Georgia, serif;
+    font-weight: 700;
+    margin-bottom: 2px;
+    display: block;
+  }
+  
+  .feature-quote-text {
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.45;
+    letter-spacing: -0.3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  .feature-content {
+    padding: 18px 20px 20px;
+  }
+  
+  .feature-tag {
+    display: inline-block;
+    background: var(--feature);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .feature-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  
+  .feature-meta {
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .feature-meta .arrow {
+    color: var(--feature);
+    font-weight: 700;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .feature-card:hover .feature-meta .arrow {
+    transform: translateX(4px);
+  }
+  
+  /* ---------- 一般延伸閱讀 ---------- */
   .related {
     background: var(--card);
     border: 1px solid var(--line);
@@ -583,6 +691,9 @@
     .policy-grid { grid-template-columns: repeat(2, 1fr); }
     .stats { gap: 6px; }
     .stat-value { font-size: 14px; }
+    .feature-quote-text { font-size: 15px; }
+    .feature-quote { padding: 16px 14px 14px; }
+    .feature-title { font-size: 15px; }
   }
   
   @media (max-width: 360px) {
@@ -615,6 +726,7 @@
     </div>
   </div>
 
+  <!-- 試算機 -->
   <div class="card">
     <h2 class="section-title">家裡有幾位寶貝？</h2>
     <p class="section-sub">最多 3 位 ‧ 年齡 0-17 歲（滿 18 即不再發放）</p>
@@ -656,6 +768,7 @@
     </div>
   </div>
 
+  <!-- 18 項政策網格 -->
   <div class="grid-card">
     <div class="grid-header">
       <h2>18 項家庭支持方案 <span class="new-tag">10 項本次新增</span></h2>
@@ -804,6 +917,26 @@
     </div>
   </div>
 
+  <!-- 卓榮泰專訪頭條 -->
+  <a href="https://premium.parenting.com.tw/article/6002272" target="_blank" rel="noopener" class="feature-card">
+    <div class="feature-image-wrap">
+      <img src="cho-jung-tai.jpg" alt="行政院長卓榮泰" class="feature-image">
+      <div class="feature-quote">
+        <span class="feature-quote-mark">"</span>
+        <div class="feature-quote-text">這不是福利，是國家生存戰</div>
+      </div>
+    </div>
+    <div class="feature-content">
+      <span class="feature-tag">獨家專訪</span>
+      <div class="feature-title">院長卓榮泰獨家專訪：0 到 18 歲國家養預算和時間表</div>
+      <div class="feature-meta">
+        <span>親子天下 ‧ 深度專訪</span>
+        <span class="arrow">閱讀 →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 一般延伸閱讀 -->
   <div class="related">
     <div class="related-header">
       <span class="related-label">延伸閱讀</span>
